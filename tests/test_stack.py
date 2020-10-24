@@ -1,5 +1,5 @@
 from unittest import TestCase
-from stack import Stack
+from stack import Stack, EmptyStackError
 
 
 class TestStackOperations(TestCase):
@@ -43,4 +43,4 @@ class TestStackOperations(TestCase):
         self.assertEqual(self.stack.size, 0)
 
     def test_should_raise_when_called_pop_on_empty_stack(self):
-        self.fail("Not implemented yet")
+        self.assertRaises(EmptyStackError, self.stack.pop)
