@@ -2,6 +2,10 @@ class EmptyStackError(Exception):
     pass
 
 
+class NotEnoughElements(Exception):
+    pass
+
+
 class Stack:
     def __init__(self):
         self._data = []
@@ -17,6 +21,11 @@ class Stack:
         if not self._data:
             raise EmptyStackError
         return self._data.pop()
+
+    def multi_pop(self, n):
+        if len(self._data) < n:
+            raise NotEnoughElements
+        return [self.pop() for _ in range(n)]
 
     def peek(self):
         return self._data[-1]

@@ -1,5 +1,5 @@
 from unittest import TestCase
-from stack import Stack, EmptyStackError
+from stack import Stack, EmptyStackError, NotEnoughElements
 
 
 class TestStackOperations(TestCase):
@@ -44,3 +44,15 @@ class TestStackOperations(TestCase):
 
     def test_should_raise_when_called_pop_on_empty_stack(self):
         self.assertRaises(EmptyStackError, self.stack.pop)
+
+    def test_multi_pop_raises_if_num_of_elements_less_then_in_stack(self):
+        self.assertRaises(NotEnoughElements, self.stack.multi_pop, 2)
+
+    def test_multi_pop_should_return_two_elements(self):
+        expected = [9, 8, 7, 6]
+        for elem in range(10):
+            self.stack.push(elem)
+
+        result = self.stack.multi_pop(4)
+
+        self.assertEqual(result, expected)
